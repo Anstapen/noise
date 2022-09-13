@@ -6,3 +6,6 @@
 	path = linux
 	url = git@github.com:Anstapen/linux.git
 	branch = v5.15-stm32mp
+[submodule "buildroot-external-st"]
+	path = buildroot-external-st
+	url = git@github.com:Anstapen/buildroot-external-st.git
