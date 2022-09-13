@@ -9,3 +9,6 @@
 [submodule "buildroot-external-st"]
 	path = buildroot-external-st
 	url = git@github.com:Anstapen/buildroot-external-st.git
+[submodule "buildroot"]
+	path = buildroot
+	url = git@github.com:Anstapen/buildroot.git
