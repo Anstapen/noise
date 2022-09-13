@@ -1,0 +1,6 @@
+[submodule "cpmk"]
+	path = cpmk
+	url = git@github.com:sourcebox/cpmk.git
+[submodule "linux"]
+	path = linux
+	url = git@github.com:Anstapen/linux.git
