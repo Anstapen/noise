@@ -9,6 +9,8 @@
 [submodule "buildroot-external-st"]
 	path = buildroot-external-st
 	url = git@github.com:Anstapen/buildroot-external-st.git
+	branch = st/2022.02
 [submodule "buildroot"]
 	path = buildroot
 	url = git@github.com:Anstapen/buildroot.git
+	branch = 2022.02.x
