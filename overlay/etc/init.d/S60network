@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# Start the network....
+#
+
+case "$1" in
+  start)
+    echo "Configuring eth0 interface..."
+    /usr/share/startup.sh
+    ;;
+  stop)
+    echo -n ""
+    ;;
+  restart|reload)
+    "$0" stop
+    "$0" start
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit $?
