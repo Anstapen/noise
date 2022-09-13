@@ -1,6 +1,8 @@
 [submodule "cpmk"]
 	path = cpmk
 	url = git@github.com:sourcebox/cpmk.git
+	branch = master
 [submodule "linux"]
 	path = linux
 	url = git@github.com:Anstapen/linux.git
+	branch = v5.15-stm32mp
