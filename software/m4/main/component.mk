@@ -1,0 +1,1 @@
+CFLAGS += '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DMETAL_FREERTOS -DMETAL_INTERNAL -DMETAL_MAX_DEVICE_REGIONS=2 -DVIRTIO_SLAVE_ONLY -D__LOG_TRACE_IO_ -DNO_ATOMIC_64_SUPPORT -DUSE_HAL_DRIVER

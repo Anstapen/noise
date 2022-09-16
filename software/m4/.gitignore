@@ -1,1 +1,3 @@
 build/*
+OpenAMP_FreeRTOS_echo_CM4.map
+log.txt
