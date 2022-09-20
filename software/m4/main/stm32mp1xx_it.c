@@ -179,9 +179,6 @@ void DebugMon_Handler(void)
   */
 void TIM2_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM2_IRQn 0 */
-
-  /* USER CODE END TIM2_IRQn 0 */
   /*
    * The condition structure was added to avoid bug during debug session in
    * production mode.
@@ -201,9 +198,6 @@ void TIM2_IRQHandler(void)
     /* Disable the TIM2 global Interrupt */
     HAL_NVIC_DisableIRQ(TIM2_IRQn);
   }
-  /* USER CODE BEGIN TIM2_IRQn 1 */
-
-  /* USER CODE END TIM2_IRQn 1 */
 }
 
 /**

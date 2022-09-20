@@ -4,9 +4,9 @@ TOOLCHAIN_PREFIX ?= arm-none-eabi-
 LD_SCRIPT = ./main/stm32mp15xx_m4.ld
 
 ifneq ($(DEBUG), 1)
-OPT_FLAGS = -O2 -ffunction-sections -fdata-sections -fstack-usage --specs=nosys.specs --specs=nano.specs -Xlinker -Map="OpenAMP_FreeRTOS_echo_CM4.map"
+OPT_FLAGS = -O2 -ffunction-sections -fdata-sections -fstack-usage --specs=nosys.specs --specs=nano.specs
 else
-OPT_FLAGS = -O0 -g -ffunction-sections -fdata-sections -fstack-usage --specs=nosys.specs --specs=nano.specs -Xlinker -Map="OpenAMP_FreeRTOS_echo_CM4.map"
+OPT_FLAGS = -O0 -g -ffunction-sections -fdata-sections -fstack-usage --specs=nosys.specs --specs=nano.specs
 endif
 
 ARCH_FLAGS = -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard 
@@ -19,7 +19,7 @@ CXXFLAGS = -std=gnu++17 $(OPT_FLAGS) $(ARCH_FLAGS) $(ERROR_FLAGS) -fno-exception
 
 ASFLAGS = -x assembler-with-cpp $(ARCH_FLAGS)
 
-LDFLAGS = -T$(LD_SCRIPT) -Xlinker --gc-sections -nodefaultlibs \
+LDFLAGS = -T$(LD_SCRIPT) -Xlinker -Map=OpenAMP_FreeRTOS_echo_CM4.map -Xlinker --gc-sections -nodefaultlibs \
 -fno-rtti -fno-exceptions -static $(OPT_FLAGS) $(ARCH_FLAGS) $(ERROR_FLAGS)
 
 SYMBOLS = USE_HAL_DRIVER STM32MP157Fxx CORE_CM4

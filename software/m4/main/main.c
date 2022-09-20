@@ -1,4 +1,3 @@
-/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * @file           : main.c
@@ -15,34 +14,12 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
 #include "openamp.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
 IPCC_HandleTypeDef hipcc;
 
 VIRT_UART_HandleTypeDef virtUART0;
@@ -56,9 +33,6 @@ osThreadId_t t0_TaskHandle;
 
 osSemaphoreId_t SemHandle0;
 
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -70,14 +44,8 @@ void virt_UART0_cb0(VIRT_UART_HandleTypeDef *huart);
 void IdleTask(void *argument);
 void t0Task(void *argument);
 
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
@@ -85,19 +53,18 @@ void t0Task(void *argument);
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
 
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  /* 
+  In this application, the Systick is only used for the RTOS (FreeRTOS in this case),
+  for the HAL_Delay() function, TIM2 gets used (see stm32mp1xx_hal_timebase_tim.c for 
+  the implementation).   
+  */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
 
   /* Configure the system clock */
   if (IS_ENGINEERING_BOOT_MODE())
@@ -124,23 +91,14 @@ int main(void)
     Error_Handler();
   }
 
-  /* USER CODE BEGIN SysInit */
   BSP_LED_Init(LED7);
   BSP_LED_Init(LED5);
-  /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  /* USER CODE BEGIN 2 */
-
-  /* USER CODE END 2 */
+ 
 
   osKernelInitialize();
 
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
-
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   SemHandle0 = osSemaphoreNew(1U, 0U, NULL);
   if (SemHandle0 == NULL)
@@ -148,19 +106,9 @@ int main(void)
     Error_Handler();
   }
 
-  /* USER CODE END RTOS_SEMAPHORES */
-
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
 
-  /* USER CODE BEGIN RTOS_THREADS */
   const osThreadAttr_t idleTask_attributes =
   {
     .name = "idle",
@@ -176,7 +124,7 @@ int main(void)
     .stack_size = 512
   };
   t0_TaskHandle = osThreadNew(t0Task, NULL, &t0_attr);
-  /* USER CODE END RTOS_THREADS */
+
 
   /* Start scheduler */
   osKernelStart();
@@ -184,14 +132,10 @@ int main(void)
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
   }
-  /* USER CODE END 3 */
+
 }
 
 
@@ -221,7 +165,7 @@ void IdleTask(void *argument)
 
 void t0Task(void *argument)
 {
-  osStatus_t status;
+  osStatus_t status;IPCC_C2;
   while (1)
   {
     status = osSemaphoreAcquire(SemHandle0, osWaitForever);
@@ -389,21 +333,11 @@ void SystemClock_Config(void)
 static void MX_IPCC_Init(void)
 {
 
-  /* USER CODE BEGIN IPCC_Init 0 */
-
-  /* USER CODE END IPCC_Init 0 */
-
-  /* USER CODE BEGIN IPCC_Init 1 */
-
-  /* USER CODE END IPCC_Init 1 */
   hipcc.Instance = IPCC;
   if (HAL_IPCC_Init(&hipcc) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN IPCC_Init 2 */
-
-  /* USER CODE END IPCC_Init 2 */
 
 }
 
@@ -413,9 +347,6 @@ static void MX_IPCC_Init(void)
   * @retval None
   */
 
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
 /**
   * @brief  Period elapsed callback in non blocking mode
   * @note   This function is called  when TIM2 interrupt took place, inside
@@ -426,16 +357,11 @@ static void MX_IPCC_Init(void)
   */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  /* USER CODE BEGIN Callback 0 */
 
-  /* USER CODE END Callback 0 */
   if (htim->Instance == TIM2)
   {
     HAL_IncTick();
   }
-  /* USER CODE BEGIN Callback 1 */
-
-  /* USER CODE END Callback 1 */
 }
 
 /**
